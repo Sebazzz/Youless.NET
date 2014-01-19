@@ -28,6 +28,8 @@
         /// <param name="baseUri"></param>
         /// <param name="credentials"></param>
         /// <returns></returns>
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Reliability", "CA2000:Dispose objects before losing scope",
+            Justification = "Handler object is owned by instance")]
         public static YoulessHttpClient Create(Uri baseUri, ICredentials credentials) {
             // create a suitable HTTP handler
             HttpClientHandler handler = new HttpClientHandler();

@@ -23,6 +23,8 @@
         /// <param name="host"></param>
         /// <param name="port"></param>
         /// <param name="credentials"></param>
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1026:DefaultParametersShouldNotBeUsed",
+            Justification = "Default parameter values are more explicit")]
         public YoulessRequestInvoker([NotNull] string host, int port = 80, ICredentials credentials = null) {
             if (host == null) {
                 throw new ArgumentNullException("host");

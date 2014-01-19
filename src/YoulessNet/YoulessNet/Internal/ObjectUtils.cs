@@ -8,7 +8,7 @@
     /// <summary>
     ///     Helper utilities for manupilating objects
     /// </summary>
-    internal class ObjectUtils {
+    internal static class ObjectUtils {
         /// <summary>
         ///     Gets all properties from the specified object.
         /// </summary>
