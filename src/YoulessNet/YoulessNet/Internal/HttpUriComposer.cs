@@ -15,11 +15,7 @@
         /// <param name="query"></param>
         /// <returns></returns>
         public static Uri Compose(string path, string query) {
-            UriBuilder builder = new UriBuilder();
-            builder.Path = path;
-            builder.Query = query;
-
-            return builder.Uri;
+            return new Uri(path + "?" + query, UriKind.Relative);
         }
 
         /// <summary>

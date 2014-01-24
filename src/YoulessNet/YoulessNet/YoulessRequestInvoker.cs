@@ -79,9 +79,11 @@
             // set format to json
             props["f"] = "j";
 
+            // compose uri
+            Uri relativePath = HttpUriComposer.Compose("/" + method, props);
+
             try {
-                using (HttpResponseMessage response = await this._httpClient.GetAsync(
-                    HttpUriComposer.Compose("/" + method, props), cancellationToken)) {
+                using (HttpResponseMessage response = await this._httpClient.ExecuteMethodAsync(relativePath, cancellationToken)) {
 
                     // read string, decode json
                     T item;

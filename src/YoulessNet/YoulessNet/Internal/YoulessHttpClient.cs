@@ -121,7 +121,7 @@
                 HttpMethod.Get, uriBuilder.Uri);
 
             using (HttpResponseMessage response =
-                await this.SendAsync(request, HttpCompletionOption.ResponseHeadersRead, cancellationToken)) {
+                await this.SendAsync(request, HttpCompletionOption.ResponseContentRead, cancellationToken)) {
                 if (response.StatusCode == HttpStatusCode.Forbidden) {
                     throw new YoulessAuthenticationException();
                 }
@@ -149,6 +149,21 @@
             }
 
             return null;
+        }
+
+        /// <summary>
+        /// Executes the remote method asynchronously
+        /// </summary>
+        /// <param name="compose"></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Reliability", "CA2000:Dispose objects before losing scope",
+            Justification = "Ownership is taken by SendAsync method")]
+        public Task<HttpResponseMessage> ExecuteMethodAsync(Uri compose, CancellationToken cancellationToken) {
+            Uri finalUri = new Uri(this.BaseAddress, compose);
+
+            return this.SendAsync(
+                new HttpRequestMessage(HttpMethod.Get, finalUri), cancellationToken);
         }
     }
 }
