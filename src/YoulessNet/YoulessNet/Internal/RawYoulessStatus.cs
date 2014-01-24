@@ -7,6 +7,8 @@
     /// Represents a <see cref="YoulessStatus"/> with some raw properties attached
     /// </summary>
     [DataContract]
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance", "CA1812:AvoidUninstantiatedInternalClasses",
+        Justification = "This class is instantiated via Reflection through SimpleJson")]
     internal class RawYoulessStatus : YoulessStatus, ITranslateable {
         /// <summary>
         /// Gets the raw connection status

@@ -1,7 +1,9 @@
 ﻿namespace YoulessNet.Internal {
     using System;
+    using System.Collections;
     using System.Collections.Generic;
     using System.Globalization;
+    using System.Linq;
     using System.Reflection;
     using JetBrains.Annotations;
 
@@ -22,6 +24,14 @@
                 throw new ArgumentNullException("o");
             }
 
+            // if it is a dictionary, return it
+            IDictionary oDirectionary = o as IDictionary;
+            if (oDirectionary != null) {
+                return oDirectionary.OfType<DictionaryEntry>()
+                    .ToDictionary(e => (e.Key as String ?? e.Key.ToString()), e => e.Value);
+            }
+
+            // get properties of anonymous object
             PropertyInfo[] props = o.GetType().GetProperties(BindingFlags.Instance | BindingFlags.Public);
 
             IDictionary<string, object> values = new Dictionary<string, object>(props.Length);
