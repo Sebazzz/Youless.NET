@@ -65,16 +65,16 @@
         /// Invokes the method specified, getting a JSON response and performing deserialization to <typeparamref name="T"/>
         /// </summary>
         /// <param name="method"></param>
-        /// <param name="parameters"></param>
+        /// <param name="parameters">Anonymous object specifying key/value pairs of parameters to pass, or an <see cref="IDictionary{TKey,TValue}"/> implementation</param>
         /// <param name="cancellationToken"></param>
         /// <returns>An object of type <typeparamref name="T"/>, which contains the data retrieved from the web service</returns>
         /// <exception cref="ObjectDisposedException">Occurs when the current instance is disposed</exception>
         /// <exception cref="YoulessDataFormatException">Occurs when the response of the web service was not in the expected format</exception>
         /// <exception cref="YoulessException">Occurs when the response of the web service could not be retrieved</exception>
-        public async Task<T> InvokeMethodAsync<T>(string method, object parameters, CancellationToken cancellationToken) where T : class, new() {
+        public async Task<T> InvokeMethodAsync<T>(string method, [CanBeNull] object parameters, CancellationToken cancellationToken) where T : class, new() {
             this.EnsureNotDisposed();
 
-            IDictionary<string, object> props = ObjectUtils.GetProperties(parameters);
+            IDictionary<string, object> props = ObjectUtils.GetProperties(parameters ?? new object());
             
             // set format to json
             props["f"] = "j";
