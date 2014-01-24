@@ -4,7 +4,10 @@
     /// <summary>
     /// Represents an exception that occurs if authentication to the Youless API fails
     /// </summary>
-    public class YoulessAuthenticationException : YoulessException {
+#if !NETFX_CORE
+    [Serializable]
+#endif
+    public sealed class YoulessAuthenticationException : YoulessException {
         /// <summary>
         /// 
         /// </summary>
@@ -22,5 +25,7 @@
         /// 
         /// </summary>
         public YoulessAuthenticationException() {}
+
+
     }
 }

@@ -45,16 +45,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Program.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\YoulessNet\YoulessNet.csproj">
-      <Project>{4e414a12-2500-4f8e-b46c-05996bfac772}</Project>
-      <Name>YoulessNet</Name>
+    <Folder Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\YoulessNet.net40\YoulessNet.net40.csproj">
+      <Project>{df4a1c07-1819-4083-8a9f-cd8ad3f1fce2}</Project>
+      <Name>YoulessNet.net40</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

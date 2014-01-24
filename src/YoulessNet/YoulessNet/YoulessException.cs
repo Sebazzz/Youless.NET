@@ -4,6 +4,9 @@
     /// <summary>
     ///     Represents an exception that occurs when an error occurs during a request to the Youless API
     /// </summary>
+#if !NETFX_CORE
+    [Serializable]
+#endif
     public class YoulessException : Exception {
         /// <summary>
         /// 

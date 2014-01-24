@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Reflection;
 using System.Resources;
+using System.Runtime.InteropServices;
 
 [assembly: AssemblyTitle("YoulessNet")]
 [assembly: AssemblyDescription("")]
@@ -15,3 +16,5 @@ using System.Resources;
 [assembly: AssemblyVersion("1.0.0.0")]
 [assembly: AssemblyFileVersion("1.0.0.0")]
 [assembly: CLSCompliant(true)]
+
+[assembly:ComVisible(true)]

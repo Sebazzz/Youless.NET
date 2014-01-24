@@ -4,37 +4,38 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{4E414A12-2500-4F8E-B46C-05996BFAC772}</ProjectGuid>
+    <ProjectGuid>{DF4A1C07-1819-4083-8A9F-CD8AD3F1FCE2}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>YoulessNet</RootNamespace>
     <AssemblyName>YoulessNet</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DefineConstants>TRACE;DEBUG;NET40</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <DocumentationFile>bin\Debug\YoulessNet.XML</DocumentationFile>
+    <RegisterForComInterop>false</RegisterForComInterop>
     <RunCodeAnalysis>true</RunCodeAnalysis>
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
-    <DocumentationFile>bin\Debug\YoulessNet.XML</DocumentationFile>
-    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
+    <DefineConstants>TRACE;NET40</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\Release\YoulessNet.XML</DocumentationFile>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <DocumentationFile>bin\Release\YoulessNet.XML</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup>
     <SignAssembly>true</SignAssembly>
@@ -42,74 +43,100 @@
   <PropertyGroup>
     <AssemblyOriginatorKeyFile>YoulessNet-StrongKey.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
-    <ItemGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Threading.Tasks">
+      <HintPath>..\packages\Microsoft.Bcl.Async.1.0.165\lib\net40\Microsoft.Threading.Tasks.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Threading.Tasks.Extensions">
+      <HintPath>..\packages\Microsoft.Bcl.Async.1.0.165\lib\net40\Microsoft.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Threading.Tasks.Extensions.Desktop">
+      <HintPath>..\packages\Microsoft.Bcl.Async.1.0.165\lib\net40\Microsoft.Threading.Tasks.Extensions.Desktop.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Xml" />
+    <Reference Include="System.IO">
+      <HintPath>..\packages\Microsoft.Bcl.1.1.6\lib\net40\System.IO.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net" />
+    <Reference Include="System.Net.Http, Version=2.2.18.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.Net.Http.2.2.18\lib\net40\System.Net.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.Extensions">
+      <HintPath>..\packages\Microsoft.Net.Http.2.2.18\lib\net40\System.Net.Http.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.Primitives">
+      <HintPath>..\packages\Microsoft.Net.Http.2.2.18\lib\net40\System.Net.Http.Primitives.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest, Version=2.2.18.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.Net.Http.2.2.18\lib\net40\System.Net.Http.WebRequest.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime">
+      <HintPath>..\packages\Microsoft.Bcl.1.1.6\lib\net40\System.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Threading.Tasks">
+      <HintPath>..\packages\Microsoft.Bcl.1.1.6\lib\net40\System.Threading.Tasks.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
-    <!-- A reference to the entire .NET Framework is automatically included -->
-    <None Include="app.config" />
+    <Compile Include="..\YoulessNet\Internal\CoreAnnotations.cs">
+      <Link>Internal\CoreAnnotations.cs</Link>
+    </Compile>
+    <Compile Include="..\YoulessNet\Internal\HttpUriComposer.cs">
+      <Link>Internal\HttpUriComposer.cs</Link>
+    </Compile>
+    <Compile Include="..\YoulessNet\Internal\ITranslateable.cs">
+      <Link>Internal\ITranslateable.cs</Link>
+    </Compile>
+    <Compile Include="..\YoulessNet\Internal\ObjectUtils.cs">
+      <Link>Internal\ObjectUtils.cs</Link>
+    </Compile>
+    <Compile Include="..\YoulessNet\Internal\RawYoulessStatus.cs">
+      <Link>Internal\RawYoulessStatus.cs</Link>
+    </Compile>
+    <Compile Include="..\YoulessNet\Internal\YoulessHttpClient.cs">
+      <Link>Internal\YoulessHttpClient.cs</Link>
+    </Compile>
+    <Compile Include="..\YoulessNet\Properties\AssemblyInfo.cs">
+      <Link>Properties\AssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\YoulessNet\SimpleJson.cs">
+      <Link>SimpleJson.cs</Link>
+    </Compile>
+    <Compile Include="..\YoulessNet\YoulessAuthenticationException.cs">
+      <Link>YoulessAuthenticationException.cs</Link>
+    </Compile>
+    <Compile Include="..\YoulessNet\YoulessConnectionStatus.cs">
+      <Link>YoulessConnectionStatus.cs</Link>
+    </Compile>
+    <Compile Include="..\YoulessNet\YoulessDataFormatException.cs">
+      <Link>YoulessDataFormatException.cs</Link>
+    </Compile>
+    <Compile Include="..\YoulessNet\YoulessException.cs">
+      <Link>YoulessException.cs</Link>
+    </Compile>
+    <Compile Include="..\YoulessNet\YoulessRequestInvoker.cs">
+      <Link>YoulessRequestInvoker.cs</Link>
+    </Compile>
+    <Compile Include="..\YoulessNet\YoulessServiceClient.cs">
+      <Link>YoulessServiceClient.cs</Link>
+    </Compile>
+    <Compile Include="..\YoulessNet\YoulessStatus.cs">
+      <Link>YoulessStatus.cs</Link>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
     <None Include="packages.config" />
     <None Include="YoulessNet-StrongKey.snk" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Internal\CoreAnnotations.cs" />
-    <Compile Include="Internal\ITranslateable.cs" />
-    <Compile Include="Internal\RawYoulessStatus.cs" />
-    <Compile Include="YoulessConnectionStatus.cs" />
-    <Compile Include="YoulessRequestInvoker.cs" />
-    <Compile Include="Internal\ObjectUtils.cs" />
-    <Compile Include="Internal\HttpUriComposer.cs" />
-    <Compile Include="Internal\YoulessHttpClient.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SimpleJson.cs" />
-    <Compile Include="YoulessAuthenticationException.cs" />
-    <Compile Include="YoulessDataFormatException.cs" />
-    <Compile Include="YoulessException.cs" />
-    <Compile Include="YoulessServiceClient.cs" />
-    <Compile Include="YoulessStatus.cs" />
-  </ItemGroup>
-  <ItemGroup>
- 
-  </ItemGroup>
-  <ItemGroup>
     <CodeAnalysisDictionary Include="CustomDictionary.xml" />
   </ItemGroup>
-  <ItemGroup>
-    <Reference Include="System.IO">
-      <HintPath>..\packages\Microsoft.Bcl.1.1.6\lib\net40\System.IO.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="System.Net.Http">
-      <HintPath>..\packages\Microsoft.Net.Http.2.2.18\lib\net40\System.Net.Http.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="System.Net.Http.Extensions">
-      <HintPath>..\packages\Microsoft.Net.Http.2.2.18\lib\net40\System.Net.Http.Extensions.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="System.Net.Http.Primitives">
-      <HintPath>..\packages\Microsoft.Net.Http.2.2.18\lib\net40\System.Net.Http.Primitives.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="System.Net.Http.WebRequest">
-      <HintPath>..\packages\Microsoft.Net.Http.2.2.18\lib\net40\System.Net.Http.WebRequest.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="System.Runtime">
-      <HintPath>..\packages\Microsoft.Bcl.1.1.6\lib\net40\System.Runtime.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="System.Threading.Tasks">
-      <HintPath>..\packages\Microsoft.Bcl.1.1.6\lib\net40\System.Threading.Tasks.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Microsoft.Bcl.Build.1.0.13\tools\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.13\tools\Microsoft.Bcl.Build.targets')" />
   <Target Name="EnsureBclBuildImported" BeforeTargets="BeforeBuild" Condition="'$(BclBuildImported)' == ''">
     <Error Condition="!Exists('..\packages\Microsoft.Bcl.Build.1.0.13\tools\Microsoft.Bcl.Build.targets')" Text="This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=317567." HelpKeyword="BCLBUILD2001" />

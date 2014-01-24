@@ -32,8 +32,12 @@
             }
 
             // get properties of anonymous object
-            PropertyInfo[] props = o.GetType().GetProperties(BindingFlags.Instance | BindingFlags.Public);
+#if NETFX_CORE
+            PropertyInfo[] props = o.GetType().GetTypeInfo().DeclaredProperties.ToArray();
 
+#else
+            PropertyInfo[] props = o.GetType().GetProperties(BindingFlags.Instance | BindingFlags.Public);
+#endif
             IDictionary<string, object> values = new Dictionary<string, object>(props.Length);
 
             foreach (PropertyInfo prop in props) {
