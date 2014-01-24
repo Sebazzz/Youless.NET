@@ -21,6 +21,23 @@
         ///     Initializes the <see cref="YoulessRequestInvoker" /> instance
         /// </summary>
         /// <param name="host"></param>
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1026:DefaultParametersShouldNotBeUsed",
+            Justification = "Default parameter values are more explicit")]
+        public YoulessRequestInvoker([NotNull] string host) : this(host, 0) {}
+
+        /// <summary>
+        ///     Initializes the <see cref="YoulessRequestInvoker" /> instance
+        /// </summary>
+        /// <param name="host"></param>
+        /// <param name="port"></param>
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1026:DefaultParametersShouldNotBeUsed",
+            Justification = "Default parameter values are more explicit")]
+        public YoulessRequestInvoker([NotNull] string host, int port = 80) : this(host, port, null) {}
+
+        /// <summary>
+        ///     Initializes the <see cref="YoulessRequestInvoker" /> instance
+        /// </summary>
+        /// <param name="host"></param>
         /// <param name="port"></param>
         /// <param name="credentials"></param>
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1026:DefaultParametersShouldNotBeUsed",
@@ -45,13 +62,18 @@
         }
 
         /// <summary>
-        /// Invokes the method specified, getting a JSON response
+        /// Invokes the method specified, getting a JSON response and performing deserialization to <typeparamref name="T"/>
         /// </summary>
         /// <param name="method"></param>
         /// <param name="parameters"></param>
         /// <param name="cancellationToken"></param>
-        /// <returns></returns>
+        /// <returns>An object of type <typeparamref name="T"/>, which contains the data retrieved from the web service</returns>
+        /// <exception cref="ObjectDisposedException">Occurs when the current instance is disposed</exception>
+        /// <exception cref="YoulessDataFormatException">Occurs when the response of the web service was not in the expected format</exception>
+        /// <exception cref="YoulessException">Occurs when the response of the web service could not be retrieved</exception>
         public async Task<T> InvokeMethodAsync<T>(string method, object parameters, CancellationToken cancellationToken) where T : class, new() {
+            this.EnsureNotDisposed();
+
             IDictionary<string, object> props = ObjectUtils.GetProperties(parameters);
             
             // set format to json
@@ -62,12 +84,21 @@
                     HttpUriComposer.Compose("/" + method, props), cancellationToken)) {
 
                     // read string, decode json
+                    T item;
                     try {
-                        return SimpleJson.DeserializeObject<T>(await response.Content.ReadAsStringAsync());
+                        item = SimpleJson.DeserializeObject<T>(await response.Content.ReadAsStringAsync());
                     }
                     catch (SerializationException ex) {
                         throw new YoulessDataFormatException("Could not decode JSON response", ex);
                     }
+
+                    // execute raw-to-entity translation
+                    ITranslateable translateableItem = item as ITranslateable;
+                    if (translateableItem != null) {
+                        translateableItem.Translate();
+                    }
+
+                    return item;
                 }
             } catch (Exception ex) {
                 if (ex is YoulessException) {
@@ -99,7 +130,7 @@
         /// <summary>
         ///     Disposes the current <see cref="YoulessRequestInvoker" /> instance
         /// </summary>
-        /// <param name="isDisposing"></param>
+        /// <param name="isDisposing">Whether the object is disposing or finalizing</param>
         protected virtual void Dispose(bool isDisposing) {
             if (!this._isDisposed) {
                 if (isDisposing) {
@@ -110,6 +141,16 @@
 
                 this._httpClient = null;
                 this._isDisposed = true;
+            }
+        }
+
+        /// <summary>
+        /// Ensures the current object is not disposed, or throws an <see cref="ObjectDisposedException"/>
+        /// </summary>
+        /// <exception cref="ObjectDisposedException">Occurs when the current instance is disposed</exception>
+        protected void EnsureNotDisposed() {
+            if (this._isDisposed) {
+                throw new ObjectDisposedException(this.ToString());
             }
         }
     }

@@ -71,8 +71,10 @@
     <None Include="YoulessNet-StrongKey.snk" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Internal\CoreAnnotations.cs" />
+    <Compile Include="Internal\ITranslateable.cs" />
+    <Compile Include="Internal\RawYoulessStatus.cs" />
+    <Compile Include="YoulessConnectionStatus.cs" />
     <Compile Include="YoulessRequestInvoker.cs" />
     <Compile Include="Internal\ObjectUtils.cs" />
     <Compile Include="Internal\HttpUriComposer.cs" />
@@ -82,6 +84,8 @@
     <Compile Include="YoulessAuthenticationException.cs" />
     <Compile Include="YoulessDataFormatException.cs" />
     <Compile Include="YoulessException.cs" />
+    <Compile Include="YoulessServiceClient.cs" />
+    <Compile Include="YoulessStatus.cs" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
