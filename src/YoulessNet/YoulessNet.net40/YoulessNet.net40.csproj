@@ -98,6 +98,9 @@
     <Compile Include="..\YoulessNet\Internal\RawYoulessStatus.cs">
       <Link>Internal\RawYoulessStatus.cs</Link>
     </Compile>
+    <Compile Include="..\YoulessNet\Internal\RawYoulessUsageData.cs">
+      <Link>Internal\RawYoulessUsageData.cs</Link>
+    </Compile>
     <Compile Include="..\YoulessNet\Internal\YoulessHttpClient.cs">
       <Link>Internal\YoulessHttpClient.cs</Link>
     </Compile>
@@ -106,6 +109,9 @@
     </Compile>
     <Compile Include="..\YoulessNet\SimpleJson.cs">
       <Link>SimpleJson.cs</Link>
+    </Compile>
+    <Compile Include="..\YoulessNet\UsageUnit.cs">
+      <Link>UsageUnit.cs</Link>
     </Compile>
     <Compile Include="..\YoulessNet\YoulessAuthenticationException.cs">
       <Link>YoulessAuthenticationException.cs</Link>
@@ -127,6 +133,12 @@
     </Compile>
     <Compile Include="..\YoulessNet\YoulessStatus.cs">
       <Link>YoulessStatus.cs</Link>
+    </Compile>
+    <Compile Include="..\YoulessNet\YoulessUsage.cs">
+      <Link>YoulessUsage.cs</Link>
+    </Compile>
+    <Compile Include="..\YoulessNet\YoulessUsageData.cs">
+      <Link>YoulessUsageData.cs</Link>
     </Compile>
     <Compile Include="Internal\YoulessAuthenticator.cs" />
   </ItemGroup>

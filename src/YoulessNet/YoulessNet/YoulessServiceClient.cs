@@ -1,8 +1,11 @@
 ﻿namespace YoulessNet {
     using System;
+    using System.Collections;
+    using System.Collections.Generic;
     using System.Net;
     using System.Threading;
     using System.Threading.Tasks;
+    using Internal;
     using JetBrains.Annotations;
 
     /// <summary>
@@ -48,6 +51,31 @@
         /// <returns></returns>
         public async Task<YoulessStatus> GetStatusAsync(CancellationToken ct) {
             return await this._requestInvoker.InvokeMethodAsync<RawYoulessStatus>(Methods.Status, null, ct);
+        }
+
+        /// <summary>
+        /// Gets the measurements from the last hour - these are the most accurate (60 seconds interval)
+        /// </summary>
+        /// <param name="ct"></param>
+        /// <returns></returns>
+        public async Task<YoulessUsageData> GetLastHourMeasurement(CancellationToken ct) {
+            YoulessUsageData data = await GetMeasurements(new Tuple<string, int>("h", 1), ct);
+            YoulessUsageData data2 = await GetMeasurements(new Tuple<string, int>("h", 2), ct);
+
+            return data.MergeWith(data2);
+        }
+
+        /// <summary>
+        /// Gets the measurements from the Youless using the specified parameters
+        /// </summary>
+        /// <param name="parameter"></param>
+        /// <param name="ct"></param>
+        /// <returns></returns>
+        protected async Task<YoulessUsageData> GetMeasurements(Tuple<string, int> parameter, CancellationToken ct) {
+            IDictionary @params = new Dictionary<string, int>();
+            @params[parameter.Item1] = parameter.Item2;
+
+            return await this._requestInvoker.InvokeMethodAsync<RawYoulessUsageData>(Methods.Measurements, @params, ct);
         }
 
         /// <summary>
@@ -104,6 +132,11 @@
             /// Gets the method of the status page
             /// </summary>
             public const string Status = "a";
+
+            /// <summary>
+            /// Gets the method of the measurements page
+            /// </summary>
+            public const string Measurements = "V";
         }
     }
 }

@@ -103,6 +103,10 @@
             catch (HttpRequestException ex) {
                 msg.Dispose();
 
+                if (msg.StatusCode == HttpStatusCode.NotFound) {
+                    throw new NotSupportedException("Method is not supported", ex);
+                }
+
                 throw new YoulessException("Unknown no-success error while executing request", ex);
             }
         }
