@@ -55,6 +55,8 @@
                 ? other.StartTimestamp
                 : this.StartTimestamp;
 
+            mergedInstance.Unit = this.Unit;
+
             return mergedInstance;
         }
     }
