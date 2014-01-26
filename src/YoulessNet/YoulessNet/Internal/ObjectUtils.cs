@@ -23,12 +23,18 @@
             if (o == null) {
                 throw new ArgumentNullException("o");
             }
+            
+            // if it is a generic dictionary, return it
+            IDictionary<string, object> gDictionary = o as IDictionary<string, object>;
+            if (gDictionary != null) {
+                return gDictionary;
+            }
 
             // if it is a dictionary, return it
             IDictionary oDirectionary = o as IDictionary;
             if (oDirectionary != null) {
-                return oDirectionary.OfType<DictionaryEntry>()
-                    .ToDictionary(e => (e.Key as String ?? e.Key.ToString()), e => e.Value);
+                return oDirectionary.Keys.OfType<object>()
+                    .ToDictionary(e => (e as String ?? e.ToString()), e => oDirectionary[e]);
             }
 
             // get properties of anonymous object
