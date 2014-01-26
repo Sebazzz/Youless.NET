@@ -59,6 +59,20 @@
             YoulessStatus status = Async(() => Client.GetStatusAsync());
 
             Assert(() => status.CurrentUsage > 0, "Expected current usage to be filled");
+
+            Console.WriteLine(
+@"Connection status: {0}
+Current usage:       {1} watt
+Total usage:         {2} kWh
+Analog luminosity:   {3}
+Reflection dev.:     {4}%
+Next status update:  {5} sec",
+                status.ConnectionStatus,
+                status.CurrentUsage,
+                status.TotalCounter,
+                status.MovingAverageLevel,
+                status.ReflectionDeviation,
+                status.NextOnlineStatusUpdate);
         }
 
         /// <summary>
@@ -70,8 +84,10 @@
             Console.WriteLine("Executing test '{0}'", testName);
 
             try {
-                functor.Invoke();
-                Console.WriteLine();
+                using (ConsoleColorChanger.Change(ConsoleColor.Gray)) {
+                    functor.Invoke();
+                    Console.WriteLine();
+                }
 
                 using (ConsoleColorChanger.Change(ConsoleColor.Green)) {
                     Console.WriteLine();

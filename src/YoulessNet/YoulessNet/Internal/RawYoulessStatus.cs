@@ -16,7 +16,7 @@
         /// <remarks>
         /// Either 'OK' or something else.
         /// </remarks>
-        [DataMember(Name = "conn")]
+        [DataMember(Name = "con")]
         public string RawConnectionStatus { get; set; }
 
         /// <summary>
@@ -77,6 +77,7 @@
             if (!String.IsNullOrEmpty(this.RawDeviation)) {
                 string dev = this.RawDeviation.Trim('(', ')');
                 dev = dev.Replace("&plusmn;", String.Empty);
+                dev = dev.Replace("%", String.Empty);
 
                 int idev;
                 if (!Int32.TryParse(dev, NumberStyles.Integer, CultureInfo.InvariantCulture, out idev)) {
@@ -88,7 +89,7 @@
 
             // parse connection counter
             if (!String.IsNullOrEmpty(this.RawNextOnlineUpdate)) {
-                string upd = this.RawDeviation.Trim('(', ')');
+                string upd = this.RawNextOnlineUpdate.Trim('(', ')');
 
                 int iupd;
                 if (!Int32.TryParse(upd, NumberStyles.Integer, CultureInfo.InvariantCulture, out iupd)) {
