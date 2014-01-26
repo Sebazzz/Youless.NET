@@ -50,6 +50,8 @@
                 }
             }
 
+            mergedInstance.Measurements = new ReadOnlyCollection<YoulessUsage>(measurements);
+
             // set other props
             mergedInstance.StartTimestamp = this.StartTimestamp > other.StartTimestamp
                 ? other.StartTimestamp
