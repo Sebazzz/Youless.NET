@@ -43,7 +43,7 @@
                 }
 
                 if (queryKeyValues.Count > 0) {
-                    queryBuilder.Remove(queryBuilder.Length - 2, 1);
+                    queryBuilder.Remove(queryBuilder.Length - 1, 1);
                 }
             }
 

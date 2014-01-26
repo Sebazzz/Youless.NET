@@ -50,6 +50,30 @@
 
         private static void ExecuteTests() {
             ExecuteTest("Get Youless Status", CurrentStatusTest);
+            ExecuteTest("Get 24 hour log", Log24Test);
+            ExecuteTest("Get 1 hour log", LogHourTest);
+        }
+
+        private static void LogHourTest() {
+            YoulessUsageData data = Async(() => Client.GetLastHourMeasurement());
+
+            Assert(() => data.Measurements.Count == 60, "Expected one hour of 60-seconds interval measuring points");
+
+            Console.WriteLine(" Youless Status ");
+            foreach (YoulessUsage usage in data.Measurements) {
+                Console.WriteLine("{0:s}: {1, 5} {2}", usage.Timestamp, usage.Usage, data.Unit == UsageUnit.Watt ? "W" : "kWh");
+            }
+        }
+
+        private static void Log24Test() {
+            YoulessUsageData data = Async(() => Client.GetDailyMeasurements());
+
+            Assert(() => data.Measurements.Count == 24*6, "Expected entries for every hour of the day in 10 minute intervals");
+
+            Console.WriteLine(" Youless Status ");
+            foreach (YoulessUsage usage in data.Measurements) {
+                Console.WriteLine("{0:s}: {1, 5} {2}", usage.Timestamp, usage.Usage, data.Unit == UsageUnit.Watt ? "W" : "kWh");
+            }
         }
 
         /// <summary>
@@ -101,7 +125,7 @@ Next status update:  {5} sec",
             } catch (Exception ex) {
                 using (ConsoleColorChanger.Change(ConsoleColor.Red)) {
                     Console.WriteLine("Error occurred during test");
-                    Console.WriteLine(ex.GetBaseException());
+                    Console.WriteLine(ex);
                 }
             } finally {
                 Console.WriteLine();
