@@ -20,11 +20,14 @@
         </frameworkAssemblies>
     </metadata>
     <files>
-        <file src="..\src\YoulessNet\YoulessNet.net40\bin\Release\YoulessNet.XML" target="lib\net40\YoulessNet.XML" />
         <file src="..\src\YoulessNet\YoulessNet.net40\bin\Release\YoulessNet.dll" target="lib\net40\YoulessNet.dll" />
         <file src="..\src\YoulessNet\YoulessNet.net40\bin\Release\YoulessNet.pdb" target="lib\net40\YoulessNet.pdb" />
+        <file src="..\src\YoulessNet\YoulessNet.net40\bin\Release\YoulessNet.XML" target="lib\net40\YoulessNet.XML" />
         <file src="..\src\YoulessNet\YoulessNet.winstore\bin\Release\YoulessNet.dll" target="lib\netcore451\YoulessNet.dll" />
         <file src="..\src\YoulessNet\YoulessNet.winstore\bin\Release\YoulessNet.pdb" target="lib\netcore451\YoulessNet.pdb" />
         <file src="..\src\YoulessNet\YoulessNet.winstore\bin\Release\YoulessNet.XML" target="lib\netcore451\YoulessNet.XML" />
+        <file src="..\src\YoulessNet\YoulessNet.wp8\Bin\Release\YoulessNet.dll" target="lib\wp8\YoulessNet.dll" />
+        <file src="..\src\YoulessNet\YoulessNet.wp8\Bin\Release\YoulessNet.pdb" target="lib\wp8\YoulessNet.pdb" />
+        <file src="..\src\YoulessNet\YoulessNet.wp8\Bin\Release\YoulessNet.XML" target="lib\wp8\YoulessNet.XML" />
     </files>
 </package>
