@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YoulessNet.Test", "YoulessN
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YoulessNet.net40", "YoulessNet.net40\YoulessNet.net40.csproj", "{DF4A1C07-1819-4083-8A9F-CD8AD3F1FCE2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YoulessNet.winstore", "YoulessNet.winstore\YoulessNet.winstore.csproj", "{E4CAF682-8174-43CC-B0F1-57046BA261AC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YoulessNet.netfxcore451", "YoulessNet.winstore\YoulessNet.netfxcore451.csproj", "{E4CAF682-8174-43CC-B0F1-57046BA261AC}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{2F19AEC1-9586-4C4C-A240-6DCF5619A626}"
 	ProjectSection(SolutionItems) = preProject
