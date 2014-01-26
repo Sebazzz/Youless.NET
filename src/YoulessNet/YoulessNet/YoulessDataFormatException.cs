@@ -6,7 +6,7 @@
     /// <summary>
     /// Represents an unexpected error in the data format of the Youless API
     /// </summary>
-#if !NETFX_CORE
+#if !NETFX_CORE && !WINDOWS_PHONE
     [Serializable]
 #endif
     public class YoulessDataFormatException : YoulessException {
@@ -26,9 +26,9 @@
         /// 
         /// </summary>
         /// <param name="message"></param>
-        public YoulessDataFormatException(string message) : base(message) {}
+        public YoulessDataFormatException(string message) : base(message) { }
 
-#if !NETFX_CORE
+#if !NETFX_CORE && !WINDOWS_PHONE
         /// <summary>
         /// Initializes a new instance of the <see cref="T:System.Exception"/> class with serialized data.
         /// </summary>

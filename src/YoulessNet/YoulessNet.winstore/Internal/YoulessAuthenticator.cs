@@ -111,10 +111,19 @@
                 await dw.FlushAsync().AsTask(ct);
                 await dw.StoreAsync().AsTask(ct);
 
+#if WINDOWS_PHONE
+                // read back the response
+                using (DataReader dr = new DataReader(responseStream)) {
+                    uint read = await dr.LoadAsync(1024);
+
+                    return dr.ReadString(read);
+                }
+#else
                 // read back the response
                 using (StreamReader sr = new StreamReader(responseStream.AsStreamForRead(), Encoding.UTF8)) {
                     return await sr.ReadToEndAsync();
                 }
+#endif
             }
         }
 

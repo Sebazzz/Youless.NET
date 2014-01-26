@@ -6,7 +6,7 @@
     /// <summary>
     /// Represents an exception that occurs if authentication to the Youless API fails
     /// </summary>
-#if !NETFX_CORE
+#if !NETFX_CORE && !WINDOWS_PHONE
     [Serializable]
 #endif
     public class YoulessAuthenticationException : YoulessException {
@@ -26,9 +26,9 @@
         /// <summary>
         /// Initializes a new instance of the <see cref="YoulessException"/> class
         /// </summary>
-        public YoulessAuthenticationException() {}
+        public YoulessAuthenticationException() { }
 
-#if !NETFX_CORE
+#if !NETFX_CORE && !WINDOWS_PHONE
         /// <summary>
         /// Initializes a new instance of the <see cref="T:System.Exception"/> class with serialized data.
         /// </summary>
