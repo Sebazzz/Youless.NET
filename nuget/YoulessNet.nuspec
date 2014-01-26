@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+    <metadata>
+        <id>YoulessNet</id>
+        <version>1.0.0</version>
+        <title>Youless.NET</title>
+        <authors>Sebazzz</authors>
+        <licenseUrl>https://github.com/Sebazzz/Youless.NET/raw/master/LICENSE</licenseUrl>
+        <projectUrl>https://github.com/Sebazzz/Youless.NET</projectUrl>
+        <requireLicenseAcceptance>true</requireLicenseAcceptance>
+        <description>Youless.NET is an .NET interface to the Youless Energy Monitor API.</description>
+        <summary>An .NET interface to the Youless Energy Monitor.</summary>
+        <copyright>Sebastiaan Dammann and contributors 2014</copyright>
+        <tags>youless</tags>
+        <dependencies>
+            <dependency id="Microsoft.Net.Http" version="2.2" />
+        </dependencies>
+        <frameworkAssemblies>
+            <frameworkAssembly assemblyName="System.Runtime.Serialization" targetFramework="" />
+        </frameworkAssemblies>
+    </metadata>
+    <files>
+        <file src="..\src\YoulessNet\YoulessNet.net40\bin\Release\YoulessNet.XML" target="lib\net40\YoulessNet.XML" />
+        <file src="..\src\YoulessNet\YoulessNet.net40\bin\Release\YoulessNet.dll" target="lib\net40\YoulessNet.dll" />
+        <file src="..\src\YoulessNet\YoulessNet.net40\bin\Release\YoulessNet.pdb" target="lib\net40\YoulessNet.pdb" />
+        <file src="..\src\YoulessNet\YoulessNet.winstore\bin\Release\YoulessNet.dll" target="lib\netcore451\YoulessNet.dll" />
+        <file src="..\src\YoulessNet\YoulessNet.winstore\bin\Release\YoulessNet.pdb" target="lib\netcore451\YoulessNet.pdb" />
+        <file src="..\src\YoulessNet\YoulessNet.winstore\bin\Release\YoulessNet.XML" target="lib\netcore451\YoulessNet.XML" />
+    </files>
+</package>
