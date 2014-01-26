@@ -7,6 +7,7 @@
     /// <summary>
     /// Raw parsing helper struct for usage data of <see cref="YoulessUsageData"/>
     /// </summary>
+    [DataContract]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance", "CA1812:AvoidUninstantiatedInternalClasses",
         Justification = "Instantiated by SimpleJson deserializer")]
     internal class RawYoulessUsageData : YoulessUsageData, ITranslateable {
