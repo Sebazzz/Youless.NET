@@ -10,6 +10,7 @@
     /// Represents an <see cref="HttpClient"/> tailored to calling the Youless API
     /// </summary>
     internal sealed class YoulessHttpClient : HttpClient {
+        private readonly HttpClientHandler _handler;
         private ICredentials _credentials;
         private bool _hasAuthenticated;
 
@@ -20,6 +21,7 @@
             : base(requestHandler) {
             this._credentials = credentials;
             this.BaseAddress = baseUri;
+            this._handler = requestHandler;
         }
 
         /// <summary>
@@ -113,19 +115,16 @@
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
         private async Task AuthenticateAsync(Uri sourceUri, string password, CancellationToken cancellationToken) {
-            UriBuilder uriBuilder = new UriBuilder(sourceUri);
-            uriBuilder.Path = "L";
-            uriBuilder.Query = "w=" + Uri.EscapeDataString(password);
+            YoulessAuthenticationInformation authInfo =
+                await YoulessAuthenticator.AuthenticateAsync(sourceUri.Host, sourceUri.Port, password, cancellationToken);
 
-            HttpRequestMessage request = new HttpRequestMessage(
-                HttpMethod.Get, uriBuilder.Uri);
+            // set cookie
+            UriBuilder rootUri = new UriBuilder(
+                sourceUri.Scheme, sourceUri.Host, sourceUri.Port);
 
-            using (HttpResponseMessage response =
-                await this.SendAsync(request, HttpCompletionOption.ResponseContentRead, cancellationToken)) {
-                if (response.StatusCode == HttpStatusCode.Forbidden) {
-                    throw new YoulessAuthenticationException();
-                }
-            }
+            this._handler.CookieContainer.Add(
+                rootUri.Uri,
+                new Cookie(authInfo.CookieName, authInfo.CookieValue));
         }
 
         /// <summary>

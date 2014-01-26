@@ -88,7 +88,8 @@
                     // read string, decode json
                     T item;
                     try {
-                        item = SimpleJson.DeserializeObject<T>(await response.Content.ReadAsStringAsync());
+                        string responseString = await response.Content.ReadAsStringAsync();
+                        item = SimpleJson.DeserializeObject<T>(responseString);
                     }
                     catch (SerializationException ex) {
                         throw new YoulessDataFormatException("Could not decode JSON response", ex);

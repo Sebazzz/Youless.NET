@@ -17,4 +17,4 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyFileVersion("1.0.0.0")]
 [assembly: CLSCompliant(true)]
 
-[assembly:ComVisible(true)]
+[assembly:ComVisible(false)]

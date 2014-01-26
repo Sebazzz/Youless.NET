@@ -154,6 +154,7 @@
     <Compile Include="..\YoulessNet\YoulessStatus.cs">
       <Link>YoulessStatus.cs</Link>
     </Compile>
+    <Compile Include="Internal\YoulessAuthenticator.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
