@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<doc>
+  <common>
+    <webapi-exceptions>
+      <exception cref="YoulessNet.YoulessException">Thrown when a general unspecified error occurs. The <see cref="Exception.InnerException"/> may yield more information.</exception>
+      <exception cref="YoulessNet.YoulessDataFormatException">Thrown when the data of the Youless cannot be parsed</exception>
+      <exception cref="YoulessNet.YoulessAuthenticationException">Thrown when the provided credentials to the Youless were found to be invalid</exception>
+    </webapi-exceptions>
+  </common>
+</doc>
